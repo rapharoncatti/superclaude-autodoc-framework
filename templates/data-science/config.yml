@@ -1,0 +1,126 @@
+# Data Science Project Template
+# For data analysis, machine learning, and research projects
+
+project_type: "data-science"
+description: "Data science and machine learning projects with Jupyter notebooks"
+technologies: ["Python", "R", "Julia", "Scala", "SQL"]
+
+patterns:
+  source_files: "src/.*\\.(py|r|jl|scala|sql)$|scripts/.*\\.(py|r|jl|scala|sql)$"
+  notebook_files: ".*\\.ipynb$|notebooks/.*\\.ipynb$"
+  config_files: "requirements\\.txt$|environment\\.yml$|Pipfile$|pyproject\\.toml$|setup\\.py$"
+  data_files: "data/.*\\.(csv|json|parquet|pkl|h5|xlsx|tsv)$"
+  model_files: "models/.*\\.(pkl|joblib|h5|pb|onnx|pt|pth)$"
+  test_files: "tests/.*\\.(py|r|jl)$|.*test.*\\.(py|r|jl)$"
+  analysis_files: "analysis/.*|experiments/.*|reports/.*"
+
+documentation_sections:
+  - name: "Project Overview"
+    auto_update: true
+    template: "data-science-overview.md"
+    description: "Research question, dataset, and methodology"
+  - name: "Data Description"
+    auto_update: true
+    generator: "data-profiling-generator"
+    description: "Dataset characteristics, features, and data quality"
+  - name: "Methodology"
+    auto_update: true
+    description: "Analysis approach, algorithms, and experimental design"
+  - name: "Results & Findings"
+    auto_update: false
+    description: "Key insights, model performance, and conclusions"
+  - name: "Model Documentation"
+    auto_update: true
+    generator: "model-docs-generator"
+    description: "Model architecture, parameters, and performance metrics"
+  - name: "Notebook Index"
+    auto_update: true
+    generator: "notebook-index-generator"
+    description: "Index of Jupyter notebooks and their purposes"
+  - name: "Development Setup"
+    auto_update: true
+    description: "Environment setup, dependencies, and data access"
+  - name: "Reproducibility Guide"
+    auto_update: true
+    description: "Steps to reproduce analysis and model training"
+
+mcp_integration:
+  recommended_servers: ["context7", "sequential"]
+  optional_servers: ["magic", "puppeteer"]
+  data_science_servers: ["jupyter", "pandas-profiling", "mlflow"]
+
+personas:
+  primary: ["data-scientist", "researcher", "statistician"]
+  secondary: ["architect", "performance"]
+  specialized: ["ml-engineer", "data-engineer", "domain-expert"]
+
+auto_doc:
+  update_mode: "conservative"
+  validation_level: "semantic"
+  backup_enabled: true
+  auto_commit: false
+
+framework_detection:
+  pandas:
+    patterns: ["pandas", "pd.", "DataFrame"]
+    specific_files: ["requirements.txt", "environment.yml"]
+  scikit_learn:
+    patterns: ["sklearn", "scikit-learn", "from sklearn"]
+    specific_files: ["requirements.txt", "environment.yml"]
+  tensorflow:
+    patterns: ["tensorflow", "tf.", "keras"]
+    specific_files: ["requirements.txt", "environment.yml"]
+  pytorch:
+    patterns: ["torch", "pytorch", "from torch"]
+    specific_files: ["requirements.txt", "environment.yml"]
+  jupyter:
+    patterns: ["jupyter", "ipynb", ".ipynb_checkpoints"]
+    specific_files: ["*.ipynb", "jupyter_notebook_config.py"]
+  r_analysis:
+    patterns: ["library\\(", "require\\(", "\\.R$", "\\.Rmd$"]
+    specific_files: ["DESCRIPTION", "*.R", "*.Rmd"]
+
+data_pipeline:
+  ingestion: "auto-detect"
+  processing: "auto-detect"
+  validation: "auto-detect"
+  storage: "auto-detect"
+
+ml_workflow:
+  preprocessing: "auto-detect"
+  feature_engineering: "auto-detect"
+  model_training: "auto-detect"
+  model_evaluation: "auto-detect"
+  model_deployment: "auto-detect"
+
+experiment_tracking:
+  mlflow: "auto-detect"
+  wandb: "auto-detect"
+  tensorboard: "auto-detect"
+  neptune: "auto-detect"
+
+code_analysis:
+  data_loading_patterns:
+    - "pd\\.read_csv"
+    - "pd\\.read_json"
+    - "pd\\.read_parquet"
+    - "np\\.load"
+    - "joblib\\.load"
+  
+  model_patterns:
+    - "fit\\("
+    - "predict\\("
+    - "train_test_split"
+    - "cross_val_score"
+    - "GridSearchCV"
+  
+  visualization_patterns:
+    - "plt\\."
+    - "sns\\."
+    - "plotly"
+    - "ggplot"
+
+quality_metrics:
+  code_quality: ["flake8", "black", "mypy"]
+  data_quality: ["great_expectations", "pandas_profiling"]
+  model_quality: ["accuracy", "precision", "recall", "f1_score"]

@@ -1,0 +1,110 @@
+# Generic Project Template
+# For projects that don't match specific technology templates
+
+project_type: "generic"
+description: "General-purpose project template for unknown or mixed technology stacks"
+technologies: []
+
+patterns:
+  source_files: "\\.(js|ts|py|java|cs|cpp|c|h|php|rb|go|rs|kt|swift)$"
+  config_files: "\\.(json|yml|yaml|toml|ini|conf|cfg)$"
+  test_files: "\\.(test|spec)\\."
+  doc_files: "\\.(md|txt|rst|adoc)$"
+  package_files: "package\\.json$|requirements\\.txt$|Cargo\\.toml$|pom\\.xml$|build\\.gradle$|setup\\.py$"
+  build_files: "Makefile$|CMakeLists\\.txt$|build\\.(sh|bat)$"
+
+documentation_sections:
+  - name: "Project Overview"
+    auto_update: true
+    description: "Project purpose, goals, and high-level description"
+  - name: "Architecture Overview"
+    auto_update: true
+    description: "System architecture and component relationships"
+  - name: "Development Setup"
+    auto_update: true
+    description: "Environment setup, dependencies, and build process"
+  - name: "API Documentation"
+    auto_update: true
+    description: "External interfaces and data contracts"
+  - name: "System Status"
+    auto_update: true
+    description: "Current implementation status and health metrics"
+  - name: "Testing Strategy"
+    auto_update: true
+    description: "Testing approaches and quality assurance"
+
+mcp_integration:
+  recommended_servers: ["context7", "sequential"]
+  optional_servers: ["magic", "puppeteer"]
+
+personas:
+  primary: ["architect", "developer"]
+  secondary: ["security", "performance", "qa"]
+
+auto_doc:
+  update_mode: "conservative"
+  validation_level: "syntax"
+  backup_enabled: true
+  auto_commit: false
+
+language_detection:
+  javascript:
+    patterns: ["package.json", "node_modules", ".js", ".ts"]
+    frameworks: ["react", "vue", "angular", "express", "nestjs"]
+  
+  python:
+    patterns: ["requirements.txt", "setup.py", "pyproject.toml", ".py"]
+    frameworks: ["django", "flask", "fastapi", "pytest"]
+  
+  java:
+    patterns: ["pom.xml", "build.gradle", ".java"]
+    frameworks: ["spring", "maven", "gradle"]
+  
+  csharp:
+    patterns: [".csproj", ".sln", ".cs"]
+    frameworks: [".NET", "Unity", "ASP.NET"]
+  
+  go:
+    patterns: ["go.mod", "go.sum", ".go"]
+    frameworks: ["gin", "echo", "fiber"]
+  
+  rust:
+    patterns: ["Cargo.toml", "Cargo.lock", ".rs"]
+    frameworks: ["actix", "warp", "rocket"]
+
+project_structure_analysis:
+  common_directories:
+    - "src"
+    - "lib" 
+    - "app"
+    - "components"
+    - "utils"
+    - "services"
+    - "tests"
+    - "docs"
+    - "config"
+    - "scripts"
+    - "assets"
+    - "public"
+    - "build"
+    - "dist"
+
+  framework_indicators:
+    web_frontend: ["public/index.html", "src/App.js", "package.json"]
+    web_backend: ["server.js", "app.js", "main.py", "requirements.txt"]
+    mobile: ["android/", "ios/", "flutter/", "react-native/"]
+    desktop: [".exe", ".app", "main.cpp", "Program.cs"]
+    library: ["lib/", "package.json", "setup.py", "Cargo.toml"]
+
+complexity_assessment:
+  factors:
+    - file_count
+    - directory_depth
+    - language_diversity
+    - dependency_count
+    - test_coverage
+  
+  thresholds:
+    simple: { files: 50, depth: 3, languages: 1 }
+    moderate: { files: 200, depth: 5, languages: 2 }
+    complex: { files: 500, depth: 7, languages: 3 }

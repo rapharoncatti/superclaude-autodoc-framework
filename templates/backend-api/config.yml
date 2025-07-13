@@ -1,0 +1,105 @@
+# Backend API Project Template
+# For REST APIs, GraphQL services, and backend microservices
+
+project_type: "backend-api"
+description: "Backend API development with REST/GraphQL and database integration"
+technologies: ["Node.js", "Python", "Java", "Go", "C#", "PHP"]
+
+patterns:
+  source_files: "src/.*\\.(js|ts|py|java|go|cs|php|rb)$|app/.*\\.(js|ts|py|java|go|cs|php|rb)$"
+  config_files: "package\\.json$|requirements\\.txt$|pom\\.xml$|go\\.mod$|\\.env.*$|config\\.(js|ts|py|java|yaml|yml|json)$"
+  test_files: ".*\\.(test|spec)\\.(js|ts|py|java|go|cs|php)$|tests/.*\\.(js|ts|py|java|go|cs|php)$"
+  migration_files: "migrations/.*\\.(js|ts|py|sql)$|db/.*\\.(js|ts|py|sql)$"
+  api_files: "routes/.*|controllers/.*|handlers/.*|endpoints/.*"
+  package_files: "package\\.json$|requirements\\.txt$|pom\\.xml$|go\\.mod$|Cargo\\.toml$"
+
+documentation_sections:
+  - name: "Project Overview"
+    auto_update: true
+    template: "api-project-overview.md"
+    description: "Service purpose, technology stack, and architecture"
+  - name: "API Documentation"
+    auto_update: true
+    generator: "api-docs-generator"
+    description: "REST/GraphQL endpoints, request/response schemas"
+  - name: "Architecture Overview"
+    auto_update: true
+    sections: ["Service Layer", "Data Layer", "Authentication", "Middleware"]
+    description: "System architecture and service relationships"
+  - name: "Database Schema"
+    auto_update: true
+    generator: "database-docs-generator"
+    description: "Database models, relationships, and migrations"
+  - name: "Development Setup"
+    auto_update: true
+    description: "Environment setup, dependencies, and configuration"
+  - name: "Testing Strategy"
+    auto_update: true
+    description: "Unit, integration, and API testing approaches"
+  - name: "Deployment Guide"
+    auto_update: true
+    description: "Production deployment, Docker, and CI/CD"
+  - name: "Security Considerations"
+    auto_update: true
+    description: "Authentication, authorization, and security measures"
+
+mcp_integration:
+  recommended_servers: ["context7", "sequential", "magic"]
+  optional_servers: ["puppeteer"]
+  api_specific_servers: ["postman", "swagger", "database-docs"]
+
+personas:
+  primary: ["architect", "backend", "database"]
+  secondary: ["security", "performance", "devops"]
+  specialized: ["api-designer", "data-engineer"]
+
+auto_doc:
+  update_mode: "moderate"
+  validation_level: "semantic"
+  backup_enabled: true
+  auto_commit: false
+
+framework_detection:
+  express:
+    patterns: ["express", "app.js", "server.js"]
+    specific_files: ["app.js", "server.js", "index.js"]
+  fastapi:
+    patterns: ["fastapi", "main.py", "app.py"]
+    specific_files: ["main.py", "app.py", "requirements.txt"]
+  spring:
+    patterns: ["spring", "springframework"]
+    specific_files: ["pom.xml", "Application.java", "build.gradle"]
+  django:
+    patterns: ["django", "manage.py"]
+    specific_files: ["manage.py", "settings.py", "urls.py"]
+  gin:
+    patterns: ["gin-gonic", "gin"]
+    specific_files: ["go.mod", "main.go"]
+  aspnet:
+    patterns: ["aspnetcore", "Microsoft.AspNetCore"]
+    specific_files: ["Program.cs", "Startup.cs", "appsettings.json"]
+
+api_documentation:
+  openapi: "auto-detect"
+  swagger: "auto-detect"
+  postman: "auto-detect"
+  graphql_schema: "auto-detect"
+
+database_integration:
+  orm_detection:
+    - "sequelize"     # Node.js
+    - "typeorm"       # Node.js/TypeScript
+    - "prisma"        # Node.js/TypeScript
+    - "sqlalchemy"    # Python
+    - "django.orm"    # Python
+    - "hibernate"     # Java
+    - "jpa"           # Java
+    - "gorm"          # Go
+    - "entity_framework" # C#
+
+performance_monitoring:
+  metrics: ["response_time", "throughput", "error_rate", "database_queries"]
+  thresholds:
+    response_time: "500ms"
+    error_rate: "1%"
+    database_queries: "10/request"
