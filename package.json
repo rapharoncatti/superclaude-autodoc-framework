@@ -6,10 +6,14 @@
   "bin": {
     "superclaude-init": "setup/project-initializer.js",
     "superclaude-maintain": "tools/doc-maintenance.js",
-    "superclaude-update": "tools/framework-update.js"
+    "superclaude-update": "tools/framework-update.js",
+    "superclaude-v2": "core/auto-documentation-v2.js"
   },
   "scripts": {
     "test": "node tools/test-framework.js",
+    "test-v2": "node tools/test-ultra-efficient.js",
+    "benchmark": "node core/auto-documentation-v2.js --benchmark",
+    "empirical-benchmark": "node tools/empirical-benchmark.js",
     "build": "echo 'No build step required'",
     "install-global": "npm install -g .",
     "uninstall-global": "npm uninstall -g @superclaude/autodoc-framework"
@@ -34,7 +38,8 @@
     "js-yaml": "^4.1.0",
     "commander": "^9.4.1",
     "fs-extra": "^11.1.1",
-    "glob": "^8.1.0"
+    "glob": "^8.1.0",
+    "sqlite3": "^5.1.6"
   },
   "engines": {
     "node": ">=16.0.0"

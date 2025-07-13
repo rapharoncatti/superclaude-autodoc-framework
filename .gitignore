@@ -14,21 +14,38 @@ pids
 coverage/
 *.lcov
 
-# Logs
-logs
-*.log
+# nyc test coverage
+.nyc_output
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
+# Grunt intermediate storage
+.grunt
+
+# Bower dependency directory
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons
+build/Release
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
 
 # Optional npm cache directory
 .npm
 
 # Optional eslint cache
 .eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
 
 # Optional REPL history
 .node_repl_history
@@ -42,13 +59,49 @@ pids
 # dotenv environment variables file
 .env
 .env.test
+.env.production
 
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# SuperClaude specific
+cache/
+.superclaude-cache/
+docs/auto-documentation-log.json
+
+# MCP specific
+.mcp-cache/
+puppeteer_dev_chrome_profile-*/
 
 # OS generated files
 .DS_Store
@@ -60,12 +113,14 @@ ehthumbs.db
 Thumbs.db
 desktop.ini
 
-# Framework specific
-.superclaude-last-update
-.superclaude-backups/
-.doc-backups/
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Test artifacts
-test-projects/
-temp/
-*.tmp
+# Backup files
+*.bak
+*.backup
+*.save
