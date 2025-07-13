@@ -7,7 +7,7 @@
 This file contains comprehensive instructions for Claude to implement the complete SuperClaude v2.0 framework in any new session. SuperClaude v2.0 is an enhanced AI development framework that combines persona-switching intelligence with real-time MCP integration for maximum efficiency.
 
 **What Claude Will Implement:**
-- ✅ 3 Working MCPs (Context7, Sequential, Puppeteer)
+- ✅ 3 Working MCPs (Context7, Sequential, Puppeteer)  
 - ✅ 9 Expert Personas with specialized roles
 - ✅ 19 Specialized Commands with auto persona-switching
 - ✅ 6 Complete Workflows for development patterns
@@ -21,13 +21,20 @@ This file contains comprehensive instructions for Claude to implement the comple
 git clone https://github.com/rapharoncatti/superclaude-autodoc-framework.git
 cd superclaude-autodoc-framework
 
-# Install dependencies (may fail on exFAT due to symlinks)
+# Install ALL required dependencies (may fail on exFAT due to symlink restrictions)
 npm install
 
-# If npm install fails, install js-yaml globally as fallback
-npm install -g js-yaml
+# If npm install fails due to symlink issues (common on exFAT partitions):
+npm install -g js-yaml glob
 
-# Test the system
+# Alternative: Install locally without symlinks
+npm install --no-bin-links js-yaml glob
+
+# Verify installation (use one of these depending on install method):
+npm list js-yaml glob                    # For local install
+npm list -g js-yaml glob                 # For global install
+
+# Test the system (works regardless of install method)
 node final-system-test.js
 ```
 
@@ -46,12 +53,14 @@ npx -y @upstash/context7-mcp
 
 ### Sequential MCP (Adaptive Analysis)
 ```bash
-# Check if Sequential MCP is available in your environment
-# Look for sequential-thinking MCP server
-# Path typically: ~/.nvm/versions/node/v22.17.0/lib/node_modules/@modelcontextprotocol/server-sequential-thinking
+# Install Sequential MCP server if not available
+npm install -g @modelcontextprotocol/server-sequential-thinking
 
-# Test availability:
+# OR check if already installed:
 ls ~/.nvm/versions/node/*/lib/node_modules/@modelcontextprotocol/server-sequential-thinking
+
+# If not found, use this fallback path check:
+find ~ -name "*sequential-thinking*" -type d 2>/dev/null | head -5
 ```
 
 ### Puppeteer MCP (Web Automation)
@@ -63,8 +72,19 @@ ls ~/.nvm/versions/node/*/lib/node_modules/@modelcontextprotocol/server-sequenti
 
 ## STEP 3: CONFIGURE MCP INTEGRATION
 
-Edit your Claude Code MCP configuration to include SuperClaude MCPs:
+**IMPORTANT**: Claude Code must be configured to use SuperClaude MCPs. This step requires manual configuration by the user.
 
+### Find your Claude Code MCP configuration file:
+```bash
+# Typical locations:
+ls ~/.config/claude-code/mcp-config.json
+ls ~/.claude/mcp-config.json
+
+# If not found, create it:
+mkdir -p ~/.config/claude-code
+```
+
+### Add SuperClaude MCPs to your configuration:
 ```json
 {
   "servers": {
@@ -73,8 +93,8 @@ Edit your Claude Code MCP configuration to include SuperClaude MCPs:
       "args": ["-y", "@upstash/context7-mcp"]
     },
     "sequential": {
-      "command": "node",
-      "args": ["/path/to/sequential-thinking/dist/index.js"]
+      "command": "node", 
+      "args": ["~/.nvm/versions/node/v22.17.0/lib/node_modules/@modelcontextprotocol/server-sequential-thinking/dist/index.js"]
     },
     "superclaude-puppeteer": {
       "command": "node",
@@ -84,21 +104,54 @@ Edit your Claude Code MCP configuration to include SuperClaude MCPs:
 }
 ```
 
+**Note**: Update the sequential MCP path to match your actual installation path from Step 2.
+
 ## STEP 4: INITIALIZE SUPERCLAUDE SESSION
 
-Use the main SuperClaude session manager:
+**For Claude Code Users**: SuperClaude v2.0 is designed to be used interactively through Claude Code, not as a standalone Node.js application.
 
+### Interactive Usage (Recommended):
+```bash
+# After completing Steps 1-3, restart Claude Code to load MCP configurations
+# Then use SuperClaude commands directly in conversation:
+
+# Examples:
+# "Use the /design command to architect a scalable authentication system"
+# "Apply the /secure command to audit our API endpoints" 
+# "Execute the /optimize command to improve performance"
+```
+
+### Programmatic Usage (Advanced):
 ```javascript
+// Create a test file: test-superclaude.js
 const ActiveSuperClaudeSession = require('./core/active-superclaude-session.js');
 
-// Initialize session
-const session = new ActiveSuperClaudeSession();
-await session.initializeSession('your project context here');
+async function testSuperClaude() {
+    try {
+        const session = new ActiveSuperClaudeSession();
+        await session.initializeSession('test project context');
+        
+        console.log('✅ SuperClaude v2.0 initialized successfully');
+        console.log('Current persona:', session.currentPersona?.name || 'None');
+        
+        return session;
+    } catch (error) {
+        console.error('❌ SuperClaude initialization failed:', error.message);
+        return null;
+    }
+}
 
-// Test persona switching
-await session.design(['system-architecture'], ['--scalable']);
-await session.secure(['api-endpoints'], ['--audit']);
-await session.optimize(['performance'], ['--memory']);
+// Run test
+testSuperClaude().then(session => {
+    if (session) {
+        console.log('🎉 SuperClaude v2.0 is ready for use!');
+    }
+});
+```
+
+```bash
+# Test the initialization:
+node test-superclaude.js
 ```
 
 ## STEP 5: THE 9 EXPERT PERSONAS
@@ -186,61 +239,62 @@ Use these commands to trigger automatic persona switching:
 SuperClaude v2.0 includes pre-built workflows for common patterns:
 
 ### 1. Feature Development Workflow
-```javascript
-await session.plan(['new-feature'], ['--requirements']);
-await session.design(['feature-architecture'], ['--scalable']);
-await session.build(['implementation'], ['--tdd']);
-await session.test(['feature-tests'], ['--e2e']);
-await session.review(['code-quality'], ['--standards']);
-await session.secure(['security-check'], ['--audit']);
-await session.optimize(['performance'], ['--benchmarks']);
-await session.document(['feature-docs'], ['--comprehensive']);
+```bash
+# Interactive workflow using SuperClaude commands:
+# Step 1: "Use /plan to create requirements for new user authentication feature"
+# Step 2: "Apply /design to architect scalable authentication system" 
+# Step 3: "Execute /build to implement with TDD approach"
+# Step 4: "Run /test for end-to-end testing"
+# Step 5: "Apply /review for code quality standards"
+# Step 6: "Use /secure for security audit"
+# Step 7: "Execute /optimize for performance benchmarks"
+# Step 8: "Apply /document for comprehensive documentation"
 ```
 
 ### 2. Bug Investigation & Fix Workflow
-```javascript
-await session.analyze(['bug-symptoms'], ['--deep']);
-await session.debug(['root-cause'], ['--systematic']);
-await session.test(['bug-reproduction'], ['--isolated']);
-await session.refactor(['fix-implementation'], ['--clean']);
-await session.review(['fix-validation'], ['--thorough']);
-await session.document(['bug-report'], ['--detailed']);
+```bash
+# Step 1: "Use /analyze to deeply investigate bug symptoms"
+# Step 2: "Apply /debug for systematic root cause analysis"
+# Step 3: "Execute /test to reproduce bug in isolation"
+# Step 4: "Use /refactor to implement clean fix"
+# Step 5: "Apply /review for thorough fix validation" 
+# Step 6: "Execute /document for detailed bug report"
 ```
 
 ### 3. Security Audit & Hardening Workflow
-```javascript
-await session.analyze(['attack-vectors'], ['--comprehensive']);
-await session.secure(['vulnerability-scan'], ['--deep']);
-await session.test(['security-tests'], ['--penetration']);
-await session.review(['security-posture'], ['--compliance']);
-await session.document(['security-report'], ['--detailed']);
+```bash
+# Step 1: "Use /analyze for comprehensive attack vector analysis"
+# Step 2: "Apply /secure for deep vulnerability scanning"
+# Step 3: "Execute /test for penetration testing"
+# Step 4: "Use /review for compliance security posture check"
+# Step 5: "Apply /document for detailed security report"
 ```
 
 ### 4. Performance Optimization Workflow
-```javascript
-await session.analyze(['performance-bottlenecks'], ['--profiling']);
-await session.optimize(['critical-paths'], ['--algorithmic']);
-await session.test(['performance-tests'], ['--benchmarks']);
-await session.review(['optimization-results'], ['--metrics']);
-await session.document(['performance-report'], ['--detailed']);
+```bash
+# Step 1: "Use /analyze for profiling performance bottlenecks"
+# Step 2: "Apply /optimize for algorithmic critical path improvements"
+# Step 3: "Execute /test for performance benchmarks"
+# Step 4: "Use /review for optimization results metrics"
+# Step 5: "Apply /document for detailed performance report"
 ```
 
 ### 5. Refactoring & Cleanup Workflow
-```javascript
-await session.analyze(['code-quality'], ['--technical-debt']);
-await session.refactor(['structure-improvement'], ['--patterns']);
-await session.test(['refactoring-validation'], ['--regression']);
-await session.review(['quality-improvement'], ['--standards']);
-await session.document(['refactoring-log'], ['--changes']);
+```bash
+# Step 1: "Use /analyze to assess technical debt in code quality"
+# Step 2: "Apply /refactor for structure improvement using patterns"
+# Step 3: "Execute /test for regression validation"
+# Step 4: "Use /review for quality improvement standards"
+# Step 5: "Apply /document for refactoring change log"
 ```
 
 ### 6. Production Deployment Workflow
-```javascript
-await session.review(['deployment-readiness'], ['--checklist']);
-await session.test(['pre-deployment'], ['--integration']);
-await session.secure(['production-hardening'], ['--final']);
-await session.deploy(['production-release'], ['--safe']);
-await session.monitor(['deployment-health'], ['--real-time']);
+```bash
+# Step 1: "Use /review for deployment readiness checklist"
+# Step 2: "Apply /test for pre-deployment integration testing"
+# Step 3: "Execute /secure for final production hardening"
+# Step 4: "Use /deploy for safe production release"
+# Step 5: "Apply /monitor for real-time deployment health"
 ```
 
 ## STEP 8: V2.0 PERFORMANCE FEATURES
@@ -282,40 +336,58 @@ node final-system-test.js
 
 ## STEP 10: USAGE EXAMPLES
 
-### Natural Language Processing
-```javascript
-// SuperClaude automatically selects persona and MCPs
-const result = await session.processRequest(
-    'analyze the security vulnerabilities in our authentication system'
-);
-// → Automatically uses Security persona with Sequential + Context7 + Puppeteer MCPs
+### Natural Language Processing with SuperClaude Commands
+```bash
+# SuperClaude automatically selects persona and MCPs based on request
+# Example conversations with Claude Code:
 
-const result2 = await session.processRequest(
-    'optimize the performance of our React components'
-);
-// → Automatically uses Performance persona with Sequential + Context7 + Puppeteer MCPs
+# Security Analysis (→ Security persona + Sequential + Context7 + Puppeteer):
+"Use SuperClaude to analyze the security vulnerabilities in our authentication system"
+
+# Performance Optimization (→ Performance persona + Sequential + Context7 + Puppeteer):
+"Apply SuperClaude to optimize the performance of our React components"
+
+# Architecture Design (→ Architect persona + Sequential + Context7):
+"Execute SuperClaude to design a scalable microservices architecture"
 ```
 
 ### Direct Command Usage
-```javascript
-// Use specific commands for precise control
-await session.secure(['api-endpoints'], ['--oauth', '--rate-limiting']);
-await session.optimize(['database-queries'], ['--indexing', '--caching']);
-await session.test(['user-workflows'], ['--e2e', '--automated']);
+```bash
+# Use specific commands for precise control:
+"Apply the /secure command to audit API endpoints with OAuth and rate limiting"
+"Execute the /optimize command on database queries focusing on indexing and caching"
+"Use the /test command for user workflows with end-to-end automation"
 ```
 
 ### Workflow Execution
-```javascript
-// Execute complete workflows
-await session.executeWorkflow('feature-development', {
-    feature: 'user-authentication',
-    requirements: ['oauth', 'mfa', 'session-management']
-});
+```bash
+# Execute complete workflows using natural language:
+"Run the feature development workflow for user authentication with OAuth, MFA, and session management requirements"
+"Execute the security audit workflow for our payment processing system"
+"Apply the performance optimization workflow to our database layer"
 ```
 
 ## STEP 11: TROUBLESHOOTING
 
-### MCP Connection Issues
+### Installation Issues
+```bash
+# Problem: npm install fails with EPERM symlink errors
+# Solution: Use alternative installation methods
+
+# Method 1: Install globally
+npm install -g js-yaml glob
+
+# Method 2: Install without symlinks  
+npm install --no-bin-links
+
+# Method 3: Use yarn instead of npm
+yarn install
+
+# Verify SuperClaude core files exist:
+ls -la core/
+```
+
+### MCP Connection Issues  
 ```bash
 # Check MCP server status
 ps aux | grep -E "(context7|sequential|puppeteer)"
@@ -323,6 +395,12 @@ ps aux | grep -E "(context7|sequential|puppeteer)"
 # Test individual MCPs
 npx -y @upstash/context7-mcp --test
 node core/puppeteer-mcp-wrapper.js --test
+
+# Verify MCP configuration path
+ls ~/.config/claude-code/mcp-config.json
+
+# Check MCP server paths exist
+ls ~/.nvm/versions/node/*/lib/node_modules/@modelcontextprotocol/server-sequential-thinking
 ```
 
 ### Performance Issues
@@ -330,6 +408,9 @@ node core/puppeteer-mcp-wrapper.js --test
 # Enable performance monitoring
 export SUPERCLAUDE_DEBUG=performance
 node core/active-superclaude-session.js
+
+# Check Node.js version compatibility
+node --version  # Should be >= 18.0.0
 ```
 
 ### Cache Issues
@@ -337,31 +418,37 @@ node core/active-superclaude-session.js
 # Clear SuperClaude cache
 rm -rf .superclaude-cache/
 rm -rf cache/
+
+# Clear npm cache if needed
+npm cache clean --force
 ```
 
 ## STEP 12: INTEGRATION WITH EXISTING PROJECTS
 
 ### For React Projects
-```javascript
-// Copy core/ directory to your project
-// Update paths in real-mcp-integration.js
-const session = new ActiveSuperClaudeSession();
-await session.initializeSession('React component development');
-await session.build(['UserProfile'], ['--typescript', '--testing']);
+```bash
+# Copy SuperClaude core/ directory to your React project
+cp -r /path/to/superclaude-autodoc-framework/core ./superclaude-core
+
+# Then use SuperClaude commands in Claude Code:
+"Initialize SuperClaude for React component development"
+"Use /build to create a TypeScript UserProfile component with testing"
 ```
 
-### For API Projects
-```javascript
-await session.initializeSession('REST API development');
-await session.design(['user-auth'], ['--microservices']);
-await session.secure(['api-endpoints'], ['--oauth']);
+### For API Projects  
+```bash
+# Integration example conversations:
+"Initialize SuperClaude for REST API development"
+"Apply /design to create microservices user authentication architecture"
+"Execute /secure to audit API endpoints with OAuth implementation"
 ```
 
 ### For Performance Projects
-```javascript
-await session.initializeSession('performance optimization');
-await session.analyze(['bottlenecks'], ['--memory', '--cpu']);
-await session.optimize(['database'], ['--queries', '--indexing']);
+```bash
+# Performance optimization workflows:
+"Initialize SuperClaude for performance optimization tasks"
+"Use /analyze to identify memory and CPU bottlenecks"
+"Apply /optimize to improve database queries and indexing"
 ```
 
 ## IMPLEMENTATION COMPLETE

@@ -20,17 +20,18 @@
   "author": "SuperClaude Team",
   "license": "MIT",
   "dependencies": {
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "glob": "^10.0.0"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/superclaude/autodoc-framework.git"
+    "url": "git+https://github.com/rapharoncatti/superclaude-autodoc-framework.git"
   },
   "bugs": {
-    "url": "https://github.com/superclaude/autodoc-framework/issues"
+    "url": "https://github.com/rapharoncatti/superclaude-autodoc-framework/issues"
   },
-  "homepage": "https://github.com/superclaude/autodoc-framework#readme"
+  "homepage": "https://github.com/rapharoncatti/superclaude-autodoc-framework#readme"
 }
