@@ -52,12 +52,17 @@ This is **SuperClaude v2.0** - an enhanced version of the original SuperClaude s
 git clone <repository-url>
 cd superclaude-autodoc-framework
 
-# Install dependencies (if needed)
+# Install dependencies (Note: may fail on exFAT partitions due to symlink restrictions)
 npm install
+
+# If npm install fails due to symlink issues, install js-yaml globally:
+npm install -g js-yaml
 
 # Test the system
 node final-system-test.js
 ```
+
+**Note**: This project works on exFAT partitions but npm dependencies requiring symlinks may fail to install. The system will gracefully fallback to basic functionality if optional dependencies are unavailable.
 
 ### Basic Usage
 

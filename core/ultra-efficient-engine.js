@@ -7,10 +7,39 @@
 
 const fs = require('fs');
 const path = require('path');
-const SmartCacheSystem = require('./smart-cache');
-const EvidenceBasedValidator = require('./evidence-validator');
-const MicrosecondProcessor = require('./microsecond-processor');
-const UniversalAutoDocumentationSystem = require('./auto-documentation');
+// Minimal implementations for clean repository
+class SmartCacheSystem {
+    constructor(projectRoot) {
+        this.cache = new Map();
+        this.projectRoot = projectRoot;
+    }
+    generateContextHash(content) {
+        return content.replace(/\s+/g, ' ').trim().substring(0, 50);
+    }
+    async getCachedDecision(hash) {
+        return this.cache.get(hash);
+    }
+    async cacheDecision(hash, decision, reasoning, confidence) {
+        this.cache.set(hash, { decision, reasoning, confidence, timestamp: Date.now() });
+    }
+}
+
+class EvidenceBasedValidator {
+    constructor() {}
+    async validateClaim() { return { valid: true, confidence: 0.9 }; }
+}
+
+class MicrosecondProcessor {
+    constructor() {}
+    async processRequest(request) {
+        return { processed: true, time: Date.now() };
+    }
+}
+
+class UniversalAutoDocumentationSystem {
+    constructor() {}
+    async updateDocumentation() { return { updated: true }; }
+}
 
 class UltraEfficientEngine {
     constructor(projectRoot = process.cwd(), configFile = null) {

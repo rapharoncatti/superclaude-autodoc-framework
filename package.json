@@ -1,0 +1,36 @@
+{
+  "name": "superclaude-autodoc-framework",
+  "version": "2.0.0",
+  "description": "SuperClaude v2.0 - Enhanced AI development framework with persona-switching and real MCP integration",
+  "main": "core/active-superclaude-session.js",
+  "scripts": {
+    "test": "node final-system-test.js",
+    "start": "node core/active-superclaude-session.js"
+  },
+  "keywords": [
+    "superclaude",
+    "ai",
+    "development",
+    "persona",
+    "mcp",
+    "automation",
+    "claude",
+    "framework"
+  ],
+  "author": "SuperClaude Team",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superclaude/autodoc-framework.git"
+  },
+  "bugs": {
+    "url": "https://github.com/superclaude/autodoc-framework/issues"
+  },
+  "homepage": "https://github.com/superclaude/autodoc-framework#readme"
+}
