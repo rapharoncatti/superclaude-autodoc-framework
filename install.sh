@@ -69,15 +69,31 @@ cd "$INSTALL_DIR"
 # Download/copy SuperClaude Enhanced files
 echo -e "\n${BLUE}📥 Installing SuperClaude Enhanced files...${NC}"
 
-# If running from cloned repository
+# Download source files from GitHub or copy from local
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 if [ -f "$SCRIPT_DIR/src/enhanced-superclaude-complete.js" ]; then
+    # Running from cloned repository
     cp -r "$SCRIPT_DIR/src/"* "$INSTALL_DIR/"
-    print_status "Files copied from repository src/ directory"
+    print_status "Files copied from local repository"
 else
-    print_error "Source files not found. Please run from the cloned repository directory."
-    print_error "Expected location: $SCRIPT_DIR/src/"
-    exit 1
+    # Running via curl | bash - download from GitHub
+    print_status "Downloading source files from GitHub..."
+    
+    BASE_URL="https://raw.githubusercontent.com/rapharoncatti/superclaude-autodoc-framework/main/src"
+    
+    # Download each source file
+    curl -fsSL "$BASE_URL/enhanced-superclaude-complete.js" -o "$INSTALL_DIR/enhanced-superclaude-complete.js"
+    curl -fsSL "$BASE_URL/enhanced-superclaude-autodoc.js" -o "$INSTALL_DIR/enhanced-superclaude-autodoc.js"
+    curl -fsSL "$BASE_URL/intelligent-persona-system.js" -o "$INSTALL_DIR/intelligent-persona-system.js"
+    curl -fsSL "$BASE_URL/workflow-chaining-system.js" -o "$INSTALL_DIR/workflow-chaining-system.js"
+    
+    # Verify downloads
+    if [ -f "$INSTALL_DIR/enhanced-superclaude-complete.js" ]; then
+        print_status "Source files downloaded successfully"
+    else
+        print_error "Failed to download source files from GitHub"
+        exit 1
+    fi
 fi
 
 # Install NomenAK's SuperClaude Foundation
