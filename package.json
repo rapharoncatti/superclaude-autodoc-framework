@@ -1,37 +1,42 @@
 {
-  "name": "superclaude-autodoc-framework",
-  "version": "2.0.0",
-  "description": "SuperClaude v2.0 - Enhanced AI development framework with persona-switching and real MCP integration",
-  "main": "core/active-superclaude-session.js",
+  "name": "superclaude-enhanced",
+  "version": "1.0.0",
+  "description": "Honest enhancement layer for NomenAK's SuperClaude framework with intelligent personas, workflow automation, and real-time documentation",
+  "main": "src/enhanced-superclaude-complete.js",
   "scripts": {
-    "test": "node final-system-test.js",
-    "start": "node core/active-superclaude-session.js"
+    "install": "./install.sh",
+    "activate": "node src/enhanced-superclaude-complete.js",
+    "test": "node test/system-test.js",
+    "health": "node -e \"console.log(require('./src/enhanced-superclaude-complete.js').healthCheck())\""
   },
   "keywords": [
-    "superclaude",
     "ai",
-    "development",
-    "persona",
-    "mcp",
-    "automation",
     "claude",
-    "framework"
+    "superclaude", 
+    "personas",
+    "workflow",
+    "automation",
+    "documentation",
+    "mcp"
   ],
-  "author": "SuperClaude Team",
+  "author": "rapharoncatti",
   "license": "MIT",
-  "dependencies": {
-    "js-yaml": "^4.1.0",
-    "glob": "^10.0.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rapharoncatti/superclaude-enhanced.git"
   },
+  "bugs": {
+    "url": "https://github.com/rapharoncatti/superclaude-enhanced/issues"
+  },
+  "homepage": "https://github.com/rapharoncatti/superclaude-enhanced#readme",
   "engines": {
     "node": ">=18.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rapharoncatti/superclaude-autodoc-framework.git"
-  },
-  "bugs": {
-    "url": "https://github.com/rapharoncatti/superclaude-autodoc-framework/issues"
-  },
-  "homepage": "https://github.com/rapharoncatti/superclaude-autodoc-framework#readme"
+  "os": ["linux", "darwin"],
+  "preferGlobal": false,
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {
+    "claude-code": "*"
+  }
 }
