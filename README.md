@@ -38,11 +38,11 @@ This is an **enhancement layer** built on top of [NomenAK's SuperClaude framewor
 
 ```bash
 # One-command install for any project
-curl -fsSL https://raw.githubusercontent.com/rapharoncatti/superclaude-enhanced/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/rapharoncatti/superclaude-autodoc-framework/main/install.sh | bash
 
 # Or manual:
-git clone https://github.com/rapharoncatti/superclaude-enhanced.git
-cd superclaude-enhanced
+git clone https://github.com/rapharoncatti/superclaude-autodoc-framework.git
+cd superclaude-autodoc-framework
 chmod +x install.sh
 ./install.sh
 ```
