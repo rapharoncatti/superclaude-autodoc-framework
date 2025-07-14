@@ -60,11 +60,12 @@ else
     print_status "Claude Code CLI found"
 fi
 
-# Create installation directory
-INSTALL_DIR="$HOME/.superclaude-enhanced"
-echo -e "\n${BLUE}📁 Creating installation directory: $INSTALL_DIR${NC}"
+# Create installation directory IN CURRENT PROJECT
+PROJECT_DIR="$(pwd)"
+INSTALL_DIR="$PROJECT_DIR/.superclaude"
+echo -e "\n${BLUE}📁 Installing to current project: $PROJECT_DIR${NC}"
+echo -e "${BLUE}📁 Creating directory: $INSTALL_DIR${NC}"
 mkdir -p "$INSTALL_DIR"
-cd "$INSTALL_DIR"
 
 # Download/copy SuperClaude Enhanced files
 echo -e "\n${BLUE}📥 Installing SuperClaude Enhanced files...${NC}"
@@ -304,20 +305,30 @@ echo "============================================="
 echo -e "\n${BLUE}📊 MCP Server Status:${NC}"
 claude mcp list 2>/dev/null | grep -E "(context7|sequential|magic|playwright)" || print_warning "Some MCPs may need Claude Code restart"
 
+# Create project CLAUDE.md if doesn't exist
+if [ ! -f "$PROJECT_DIR/CLAUDE.md" ]; then
+    echo "# Project Configuration - SuperClaude Enhanced Active" > "$PROJECT_DIR/CLAUDE.md"
+    echo "" >> "$PROJECT_DIR/CLAUDE.md"
+    echo "SuperClaude Enhanced has been installed for this project." >> "$PROJECT_DIR/CLAUDE.md"
+    echo "- Location: .superclaude/" >> "$PROJECT_DIR/CLAUDE.md"
+    echo "- Auto-documentation: Active" >> "$PROJECT_DIR/CLAUDE.md"
+    echo "- Personas: 7 intelligent experts" >> "$PROJECT_DIR/CLAUDE.md"
+    echo "- Workflows: 6 automated chains" >> "$PROJECT_DIR/CLAUDE.md"
+    print_status "Created project CLAUDE.md"
+fi
+
 echo -e "\n${BLUE}🚀 Next Steps:${NC}"
 echo "1. Restart Claude Code to load MCP servers:"
 echo "   ${YELLOW}claude --restart${NC}"
 echo ""
-echo "2. Activate in current project:"
-echo "   ${YELLOW}node $INSTALL_DIR/integrate.js${NC}"
+echo "2. Test the enhancement system:"
+echo "   ${YELLOW}node .superclaude/activate.js${NC}"
 echo ""
-echo "3. Test the system:"
-echo "   ${YELLOW}node $INSTALL_DIR/activate.js${NC}"
-echo ""
-echo "4. Use naturally - enhancement is automatic!"
+echo "3. Use naturally - enhancement is automatic!"
 
-echo -e "\n${GREEN}✨ Installation directory: $INSTALL_DIR${NC}"
-echo -e "${GREEN}📚 Documentation: https://github.com/rapharoncatti/superclaude-enhanced${NC}"
+echo -e "\n${GREEN}✨ Project enhanced at: $PROJECT_DIR${NC}"
+echo -e "${GREEN}📁 Enhancement files: $INSTALL_DIR${NC}"
+echo -e "${GREEN}📚 Documentation: https://github.com/rapharoncatti/superclaude-autodoc-framework${NC}"
 
 # Create uninstall script
 cat > "$INSTALL_DIR/uninstall.sh" << 'EOF'

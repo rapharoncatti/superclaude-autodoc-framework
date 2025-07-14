@@ -36,8 +36,13 @@ This is an **enhancement layer** built on top of [NomenAK's SuperClaude framewor
 ## Quick Install
 
 ```bash
-# One-command install for any project
+# Install in your project directory
+cd /path/to/your/project
 curl -fsSL https://raw.githubusercontent.com/rapharoncatti/superclaude-autodoc-framework/main/install.sh | bash
+
+# Creates .superclaude/ in YOUR PROJECT (not global)
+# ✅ Project-specific enhancement
+# ✅ Similar to .git/, node_modules/, etc.
 
 # Or manual:
 git clone https://github.com/rapharoncatti/superclaude-autodoc-framework.git
