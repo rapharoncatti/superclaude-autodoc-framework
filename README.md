@@ -15,22 +15,25 @@ This is a **behavioral teaching framework** that helps Claude understand:
 - 🛠️ **WHICH commands**: Specific /sc: commands for each task type
 - 📋 **WHAT workflows**: Complete command chains for complex tasks
 - 🔌 **MCP usage patterns**: When to use Context7 vs Sequential
+- 📝 **AUTO-DOCUMENTATION**: Automatic session continuity and work preservation
+- 🎯 **TASK COMPLETION**: Persistent problem-solving with mandatory research cycles
+- 🔍 **AGGRESSIVE MCP USAGE**: Context7 + Sequential for every attempt
 
-**The Truth**: This framework teaches Claude behavioral patterns through documentation. It doesn't automatically change Claude's behavior - it provides the knowledge for Claude to follow these patterns.
+**The Truth**: This framework teaches Claude behavioral patterns through documentation. It creates automatic habits for documentation, task completion, and systematic problem-solving.
 ## Honest Assessment
 
 | Component | Status | Reality |
 |-----------|--------|---------|
 | **Persona System** | ✅ Working | Real intelligent switching with 70%+ accuracy |
 | **Workflow Chains** | ✅ Working | 6 complete workflows that actually execute |
-| **Auto-Documentation** | ✅ Working | Updates every 5 seconds, real-time tracking |
+| **Auto-Documentation** | ✅ Enhanced | Mandatory documentation rules with session continuity |
+| **Task Completion Protocol** | ✅ NEW | Persistent problem-solving with anti-defeatist enforcement |
+| **MCP Research Cycles** | ✅ NEW | Sequential + Context7 for every attempt, no guessing |
 | **SuperClaude Foundation** | ✅ Working | Full 16 /sc: command suite from NomenAK |
 | **Context7 MCP** | ✅ Working | Documentation lookup fully functional |
 | **Sequential MCP** | ✅ Working | Complex analysis and reasoning chains |
 | **Magic MCP** | ⚠️ Partial | Installed but not loading properly |
 | **Playwright MCP** | ❌ Broken |
-| **Anti-Hallucination** | ❌ Missing | Not implemented yet |
-| **Token Optimization** | ❌ Missing | Not implemented yet |
 
 **Bottom Line**: An enhancement over base SuperClaude with genuinely useful features, but don't expect miracles.
 
@@ -67,6 +70,9 @@ When user types /init, run: node .superclaude/init-behavioral-framework.js
 - ✅ Teaches Claude 7 personas and their thinking frameworks
 - ✅ Defines workflow chains for complex tasks
 - ✅ Sets up command usage patterns
+- ✅ **NEW**: Auto-documentation behavioral rules for session continuity
+- ✅ **NEW**: Task completion protocol with anti-defeatist enforcement
+- ✅ **NEW**: Mandatory MCP research cycles for every attempt
 
 ### What /init Does:
 Creates comprehensive behavioral documentation that teaches Claude:
@@ -75,6 +81,9 @@ Creates comprehensive behavioral documentation that teaches Claude:
 - Which /sc: commands to use for each task
 - Complete workflow patterns
 - MCP usage strategies
+- **Automatic documentation habits** for work preservation
+- **Persistent problem-solving** with mandatory research
+- **Anti-defeatist behaviors** for task completion
 
 ## What You Get
 
@@ -95,11 +104,18 @@ Creates comprehensive behavioral documentation that teaches Claude:
 - **Code Quality**: Assess → Improve → Cleanup → Test → Document
 - **Deployment Pipeline**: Check → Test → Build → Deploy → Validate
 
-### 3. **Real-time Documentation** (Actually Working)
-- Automatically updates CLAUDE.md files
-- Tracks /sc: command usage and persona switches
-- Session persistence and statistics
-- No user intervention required
+### 3. **Enhanced Auto-Documentation** (Significantly Improved)
+- **Mandatory documentation rules** for session continuity
+- Automatic todo list and progress tracking
+- Session summaries and context preservation
+- **Anti-work-loss behaviors** - preserves work even if Claude crashes
+- Triggers on TodoWrite usage, task completion, and session endings
+
+### 4. **Task Completion Protocol** (NEW)
+- **Persistent problem-solving** - never gives up without exhausting options
+- **Mandatory research cycles** - Sequential + Context7 for every attempt
+- **Anti-defeatist enforcement** - keeps trying until all documented options explored
+- **Structured user consultation** - only after systematic attempts
 
 ## Usage
 
