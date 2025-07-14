@@ -87,12 +87,20 @@ else
     curl -fsSL "$BASE_URL/enhanced-superclaude-autodoc.js" -o "$INSTALL_DIR/enhanced-superclaude-autodoc.js"
     curl -fsSL "$BASE_URL/intelligent-persona-system.js" -o "$INSTALL_DIR/intelligent-persona-system.js"
     curl -fsSL "$BASE_URL/workflow-chaining-system.js" -o "$INSTALL_DIR/workflow-chaining-system.js"
+    curl -fsSL "$BASE_URL/init-behavioral-framework.js" -o "$INSTALL_DIR/init-behavioral-framework.js"
+    
+    # Download documentation
+    curl -fsSL "https://raw.githubusercontent.com/rapharoncatti/superclaude-autodoc-framework/main/README.md" -o "$INSTALL_DIR/README.md"
+    curl -fsSL "https://raw.githubusercontent.com/rapharoncatti/superclaude-autodoc-framework/main/INIT_COMMAND.md" -o "$INSTALL_DIR/INIT_COMMAND.md"
     
     # Verify downloads
-    if [ -f "$INSTALL_DIR/enhanced-superclaude-complete.js" ]; then
-        print_status "Source files downloaded successfully"
+    if [ -f "$INSTALL_DIR/enhanced-superclaude-complete.js" ] && [ -f "$INSTALL_DIR/init-behavioral-framework.js" ]; then
+        print_status "All files downloaded successfully"
+        print_status "✅ Core framework files"
+        print_status "✅ Behavioral initialization script" 
+        print_status "✅ Documentation files"
     else
-        print_error "Failed to download source files from GitHub"
+        print_error "Failed to download required files from GitHub"
         exit 1
     fi
 fi
