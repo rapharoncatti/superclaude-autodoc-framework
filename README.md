@@ -1,21 +1,22 @@
-# SuperClaude Enhanced - Realistic AI Development Assistant
+# SuperClaude Enhanced - Behavioral Teaching Framework
 
-**Honest Enhancement Layer for NomenAK's SuperClaude Framework**
+**Teaching Claude HOW to think, WHEN to switch personas, and WHICH commands to use**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Working MCPs: 2/4](https://img.shields.io/badge/MCPs-2%2F4%20Working-orange.svg)]()
 [![Enhancement: 60%](https://img.shields.io/badge/Enhancement-60%25%20Real-green.svg)]()
 
-## What This Actually Is
+## What This REALLY Is
 
-This is an **enhancement layer** built on top of [NomenAK's SuperClaude framework](https://github.com/NomenAK/SuperClaude) that adds:
+This is a **behavioral teaching framework** that helps Claude understand:
 
-- ✅ **Intelligent Persona Auto-Switching**: 7 specialized personas that switch based on context
-- ✅ **Workflow Automation**: 6 complete workflows that chain /sc: commands automatically  
-- ✅ **Real-time Auto-Documentation**: Updates CLAUDE.md files without user intervention
-- ✅ **Working MCP Integration**: Context7 and Sequential MCPs working (2/4 total)
-- ⚠️ **Partial MCP Suite**: Magic and Playwright MCPs to be integrated
-- ❌ **No Token Optimization**: Still working on this.
+- 🧠 **HOW to think**: 7 detailed personas with specific mindsets and frameworks
+- 🔄 **WHEN to switch**: Context-based triggers for persona changes
+- 🛠️ **WHICH commands**: Specific /sc: commands for each task type
+- 📋 **WHAT workflows**: Complete command chains for complex tasks
+- 🔌 **MCP usage patterns**: When to use Context7 vs Sequential
+
+**The Truth**: This framework teaches Claude behavioral patterns through documentation. It doesn't automatically change Claude's behavior - it provides the knowledge for Claude to follow these patterns.
 ## Honest Assessment
 
 | Component | Status | Reality |
@@ -33,23 +34,34 @@ This is an **enhancement layer** built on top of [NomenAK's SuperClaude framewor
 
 **Bottom Line**: An enhancement over base SuperClaude with genuinely useful features, but don't expect miracles.
 
-## Quick Install
+## Quick Install & Initialize
 
+### Step 1: Install Framework
 ```bash
 # Install in your project directory
 cd /path/to/your/project
 curl -fsSL https://raw.githubusercontent.com/rapharoncatti/superclaude-autodoc-framework/main/install.sh | bash
-
-# Creates .superclaude/ in YOUR PROJECT (not global)
-# ✅ Project-specific enhancement
-# ✅ Similar to .git/, node_modules/, etc.
-
-# Or manual:
-git clone https://github.com/rapharoncatti/superclaude-autodoc-framework.git
-cd superclaude-autodoc-framework
-chmod +x install.sh
-./install.sh
 ```
+
+### Step 2: Initialize Behavioral Framework
+```bash
+# In Claude, simply type:
+/init
+
+# This will:
+# ✅ Create/update project CLAUDE.md with behavioral patterns
+# ✅ Teach Claude the 7 personas and their thinking frameworks
+# ✅ Define workflow chains for complex tasks
+# ✅ Set up command usage patterns
+```
+
+### What /init Does:
+Creates comprehensive behavioral documentation that teaches Claude:
+- How each persona thinks and acts
+- When to switch between personas
+- Which /sc: commands to use for each task
+- Complete workflow patterns
+- MCP usage strategies
 
 ## What You Get
 
