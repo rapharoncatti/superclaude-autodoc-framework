@@ -69,21 +69,15 @@ cd "$INSTALL_DIR"
 # Download/copy SuperClaude Enhanced files
 echo -e "\n${BLUE}📥 Installing SuperClaude Enhanced files...${NC}"
 
-# If running from repository
-if [ -f "../superclaude-enhanced/src/enhanced-superclaude-complete.js" ]; then
-    cp -r ../superclaude-enhanced/src/* "$INSTALL_DIR/"
-    print_status "Files copied from local repository"
+# If running from cloned repository
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -f "$SCRIPT_DIR/src/enhanced-superclaude-complete.js" ]; then
+    cp -r "$SCRIPT_DIR/src/"* "$INSTALL_DIR/"
+    print_status "Files copied from repository src/ directory"
 else
-    # Download from GitHub (when published)
-    print_warning "Copying from current development files..."
-    
-    # Copy our working files
-    cp "/home/rapharoncatti/Documents/Projektet03/enhanced-superclaude-complete.js" "$INSTALL_DIR/"
-    cp "/home/rapharoncatti/Documents/Projektet03/enhanced-superclaude-autodoc.js" "$INSTALL_DIR/"
-    cp "/home/rapharoncatti/Documents/Projektet03/intelligent-persona-system.js" "$INSTALL_DIR/"
-    cp "/home/rapharoncatti/Documents/Projektet03/workflow-chaining-system.js" "$INSTALL_DIR/"
-    
-    print_status "Enhancement files installed"
+    print_error "Source files not found. Please run from the cloned repository directory."
+    print_error "Expected location: $SCRIPT_DIR/src/"
+    exit 1
 fi
 
 # Install NomenAK's SuperClaude Foundation
@@ -127,18 +121,26 @@ echo "Installing Sequential Thinking MCP..."
 if claude mcp list | grep -q "sequential"; then
     print_warning "Sequential Thinking MCP already installed"
 else
-    # Install enhanced version
-    SEQUENTIAL_DIR="$HOME/.mcp-servers/sequential-thinking"
-    mkdir -p "$SEQUENTIAL_DIR"
-    cd "$SEQUENTIAL_DIR"
-    
-    git clone https://github.com/jasonpaulso/sequential-thinking-claude-code.git .
-    npm install
-    npm run build
-    
-    claude mcp add sequential-thinking -- node "$SEQUENTIAL_DIR/dist/index.js"
-    print_status "Sequential Thinking MCP installed"
-    cd "$INSTALL_DIR"
+    # Install from npm (more reliable)
+    if npm install -g @modelcontextprotocol/server-sequential-thinking 2>/dev/null; then
+        claude mcp add sequential-thinking -- npx @modelcontextprotocol/server-sequential-thinking
+        print_status "Sequential Thinking MCP installed"
+    else
+        print_warning "Sequential Thinking MCP installation failed - trying alternative"
+        # Fallback to manual installation
+        SEQUENTIAL_DIR="$HOME/.mcp-servers/sequential-thinking"
+        mkdir -p "$SEQUENTIAL_DIR"
+        cd "$SEQUENTIAL_DIR"
+        
+        if git clone https://github.com/jasonpaulso/sequential-thinking-claude-code.git . 2>/dev/null; then
+            npm install && npm run build
+            claude mcp add sequential-thinking -- node "$SEQUENTIAL_DIR/dist/index.js"
+            print_status "Sequential Thinking MCP installed (manual)"
+        else
+            print_warning "Sequential Thinking MCP installation failed"
+        fi
+        cd "$INSTALL_DIR"
+    fi
 fi
 
 # 3. Magic AI MCP (attempt)
