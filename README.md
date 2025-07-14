@@ -44,16 +44,29 @@ curl -fsSL https://raw.githubusercontent.com/rapharoncatti/superclaude-autodoc-f
 ```
 
 ### Step 2: Initialize Behavioral Framework
-```bash
-# In Claude, simply type:
-/init
 
-# This will:
-# ✅ Create/update project CLAUDE.md with behavioral patterns
-# ✅ Teach Claude the 7 personas and their thinking frameworks
-# ✅ Define workflow chains for complex tasks
-# ✅ Set up command usage patterns
+**Option A: Direct initialization**
+```bash
+node .superclaude/init-behavioral-framework.js
 ```
+
+**Option B: Teach Claude the /init command**
+```bash
+# First, add this to your CLAUDE.md:
+echo '
+## Custom Commands
+When user types /init, run: node .superclaude/init-behavioral-framework.js
+' >> CLAUDE.md
+
+# Then in Claude, type:
+/init
+```
+
+**What initialization does:**
+- ✅ Creates comprehensive CLAUDE.md with behavioral patterns
+- ✅ Teaches Claude 7 personas and their thinking frameworks
+- ✅ Defines workflow chains for complex tasks
+- ✅ Sets up command usage patterns
 
 ### What /init Does:
 Creates comprehensive behavioral documentation that teaches Claude:

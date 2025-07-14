@@ -1,14 +1,32 @@
 # /init Command Documentation
 
+## Important Note
+
+`/init` is NOT a built-in Claude command. It's a custom command that needs to be taught to Claude first.
+
 ## What is /init?
 
 The `/init` command initializes the SuperClaude Enhanced behavioral framework in your project by creating comprehensive documentation that teaches Claude how to behave.
 
-## Usage
+## Setup & Usage
 
-In any Claude session within your project:
+### First Time Setup
+Add this to your project's CLAUDE.md:
+```markdown
+## Custom Commands
+When user types /init, run: node .superclaude/init-behavioral-framework.js
+```
+
+### Usage
+After setup, in any Claude session:
 ```
 /init
+```
+
+### Alternative (Direct Execution)
+Skip the custom command and run directly:
+```bash
+node .superclaude/init-behavioral-framework.js
 ```
 
 ## What it does:
